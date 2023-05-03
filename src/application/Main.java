@@ -5,7 +5,9 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
+import javax.swing.*;
 import java.util.Date;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -15,5 +17,13 @@ public class Main {
         System.out.println("=== TEST 1: Seller findById ===");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
+
+        System.out.println("=== TEST 2: Seller findByDepartmentId ===");
+        Department department = new Department(2, null);
+        List<Seller> listSellers = sellerDao.findByDepartment(department);
+
+        for (Seller obj : listSellers){
+            System.out.println(obj);
+        }
     }
 }
