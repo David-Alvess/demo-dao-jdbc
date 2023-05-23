@@ -5,8 +5,6 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import javax.swing.*;
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -14,13 +12,19 @@ public class Main {
 
         SellerDao sellerDao = DaoFactory.createSellerDao();
 
-        System.out.println("=== TEST 1: Seller findById ===");
+        System.out.println("\n=== TEST 1: Seller findById ===");
         Seller seller = sellerDao.findById(3);
         System.out.println(seller);
 
-        System.out.println("=== TEST 2: Seller findByDepartmentId ===");
+        System.out.println("\n=== TEST 2: Seller findByDepartmentId ===");
         Department department = new Department(2, null);
         List<Seller> listSellers = sellerDao.findByDepartment(department);
+
+        for (Seller obj : listSellers){
+            System.out.println(obj);
+        }
+        System.out.println("\n=== TEST 3: Seller findByAll ===");
+        listSellers = sellerDao.findAll();
 
         for (Seller obj : listSellers){
             System.out.println(obj);
