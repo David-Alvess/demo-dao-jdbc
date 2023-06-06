@@ -58,7 +58,28 @@ public class SellerDaoJdbc implements SellerDao {
     }
     @Override
     public void update(Seller seller) {
+        PreparedStatement st = null;
 
+        try {
+            st = conn.prepareStatement(
+                    "UPDATE seller "
+                            +"SET Name = ?, Email = ?, BirthDate = ?, BaseSalary = ?, DepartmentId = ? "
+                            +"WHERE id = ?");
+
+            st.setString(1, seller.getName());
+            st.setString(2, seller.getEmail());
+            st.setDate(3, new java.sql.Date(seller.getBirthDate().getTime()));
+            st.setDouble(4, seller.getBaseSalary());
+            st.setInt(5, seller.getDepartment().getId());
+            st.setInt(6, seller.getId());
+
+            st.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new DbException("Error in update sellerr: " + e.getMessage());
+        } finally {
+            DB.closeStatement(st);
+        }
     }
 
     @Override
@@ -73,10 +94,10 @@ public class SellerDaoJdbc implements SellerDao {
         ResultSet rs = null;
 
         try {
-            st = conn.prepareStatement("select seller .*,department.Name as DepName " +
-                    "from seller INNER JOIN department " +
+            st = conn.prepareStatement("SELECT seller .*,department.Name as DepName " +
+                    "FROM seller INNER JOIN department " +
                     "ON seller.DepartmentId = Department.id " +
-                    "where seller.Id = ?");
+                    "WHERE seller.Id = ?");
 
             st.setInt(1, id);
             rs = st.executeQuery();
