@@ -5,7 +5,6 @@ import model.dao.SellerDao;
 import model.entities.Department;
 import model.entities.Seller;
 
-import java.util.Date;
 import java.util.List;
 
 public class Main {
@@ -36,10 +35,14 @@ public class Main {
         sellerDao.insert(seller1);
         System.out.println("Inserted new id = " + seller1.getId()); */
 
-        System.out.println("\n=== TEST 5: Seller update ===");
+        /*System.out.println("\n=== TEST 5: Seller update ===");
         Seller seller2 = sellerDao.findById(16);
         seller2.setName("Greg Maccallyster");
         sellerDao.update(seller2);
-        System.out.println("Update completed");
+        System.out.println("Update completed");*/
+
+        System.out.println("\n=== TEST 6: Seller deleteById ===");
+        sellerDao.deleteByID(17);
+        System.out.println("Delete completed!");
     }
 }
