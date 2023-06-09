@@ -1,7 +1,9 @@
 package application;
 
 import model.dao.DaoFactory;
+import model.dao.DepartmentDao;
 import model.dao.SellerDao;
+import model.daoImplements.DepartmentDaoJdbc;
 import model.entities.Department;
 import model.entities.Seller;
 
@@ -41,8 +43,9 @@ public class Main {
         sellerDao.update(seller2);
         System.out.println("Update completed");*/
 
-        System.out.println("\n=== TEST 6: Seller deleteById ===");
+        /*System.out.println("\n=== TEST 6: Seller deleteById ===");
         sellerDao.deleteByID(17);
-        System.out.println("Delete completed!");
+        System.out.println("Delete completed!");*/
+
     }
 }
